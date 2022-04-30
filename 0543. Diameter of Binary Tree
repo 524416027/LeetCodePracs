@@ -35,7 +35,6 @@ public class Solution {
         
         if(max < leftCount + rightCount)
         {
-            //Console.WriteLine("current: "+ root.val + ", assign max to "+ (leftCount + rightCount));
             max = leftCount + rightCount;
         }
         
