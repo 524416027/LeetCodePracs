@@ -1,0 +1,32 @@
+public class Solution {
+    public int[] CountBits(int n) {
+        int[] bitArray = new Int[n+1];
+        int bit = 0;
+        
+        int[] countArray = new Int[n+1];
+        
+        bitAarray[0] = bit;
+        countArray[0] = 0;
+        
+        for(int i = 0; i < n; i++)
+        {
+            if((bit + 1) % 10 == 2)
+            {
+                bit *= 10;
+                
+                if(bit - 0 != 0)
+                {
+                    bit--;
+                }
+            }
+            else
+            {
+                bit++;
+                
+                countArray[i + 1]++;
+            }
+            
+            bitArray[i + 1] = bit;
+        }
+    }
+}
