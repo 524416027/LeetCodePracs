@@ -1,0 +1,24 @@
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+        int[] twoSum = new int[2];
+        
+        for(int i = 0; i < nums.Length; i++)
+        {
+            twoSum[0] = i;
+            
+                
+            for(int j = i + 1; j < nums.Length; j++)
+            {
+                twoSum[1] = j;
+                
+                if(nums[twoSum[0]] + nums[twoSum[1]] == target)
+                {
+                    i = nums.Length;
+                    j = nums.Length;
+                }
+            }
+        }
+        
+        return twoSum;
+    }
+}
