@@ -19,7 +19,6 @@ public class Solution {
             {
                 return current1;
             }
-            else
             
             current1 = current1.next;
             current2 = current2.next;
