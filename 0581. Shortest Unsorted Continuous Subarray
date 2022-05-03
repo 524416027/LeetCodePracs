@@ -1,0 +1,42 @@
+public class Solution {
+    public int FindUnsortedSubarray(int[] nums) {
+        (int Value, int Index) minLast = -1, -1; //value, index
+        (int Value, int Index) maxLast = -1, -1; //value, index
+        
+        int minIndex = -1;
+        int maxIndex = -1;
+        
+        for(int i = 0; i < nums.Length; i++)
+        {
+            if(minLast.Value == -1)
+            {
+                minLast.Value = nums[i];
+                minLast.Index = i;
+            }
+            else
+            {
+                if(minLast.Value > nums[i])
+                {
+                    minIndex = minLast.Index;
+                }
+            }
+            
+            if(maxLast.Value == -1)
+            {
+                maxLast.Value = nums[nums.Length -1 -i];
+                maxLast.Index = nums[nums.Length -1 -i];
+            }
+            else
+            {
+                if(maxLast.Value < nums[nums.Length -1 -i])
+                {
+                    maxIndex = nums[nums.Length -1 -i];
+                }
+            }
+        }
+        
+        Console.WriteLine(minIndex + " min and max " + maxIndex);
+        
+        return minIndex - maxIndex + 1;
+    }
+}
