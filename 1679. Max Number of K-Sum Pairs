@@ -1,0 +1,64 @@
+public class Solution {
+    public int MaxOperations(int[] nums, int k) {
+        Dictionary<int, int> dictionary = new Dictionary<int, int>();
+        int count = 0;
+        
+        for(int i = 0; i < nums.Length; i++)
+        {
+            if(dictionary.ContainsKey(nums[i]))
+            {
+                dictionary[nums[i]] += 1;
+            }
+            else
+            {
+                dictionary.Add(nums[i], 1);
+            }
+        }
+        
+        for(int j = 0; j < nums.Length; j++)
+        {
+            //found
+            if(dictionary.ContainsKey(nums[j]) && dictionary.ContainsKey(k - nums[j]))
+            {   
+                //if x and k-x is same
+                if(k - nums[j] == nums[j])
+                {
+                    if(dictionary[nums[j]] >= 2)
+                    {
+                        dictionary[nums[j]] -= 2;
+                        
+                        if(dictionary[nums[j]] == 0)
+                        {
+                            dictionary.Remove(nums[j]);
+                        }
+                        
+                        count++;
+                    }
+                }
+                else
+                {
+                    if(dictionary[nums[j]] > 1)
+                    {
+                        dictionary[nums[j]] -= 1;
+                    }
+                    else
+                    {
+                        dictionary.Remove(nums[j]);
+                    }
+
+                    if(dictionary[k - nums[j]] > 1)
+                    {
+                        dictionary[k - nums[j]] -= 1;
+                    }
+                    else
+                    {
+                        dictionary.Remove(k - nums[j]);
+                    }
+                    
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
