@@ -1,0 +1,69 @@
+public class MyStack {
+    Queue<int> myStack;
+    Queue<int> myStack2;
+
+    public MyStack() {
+        myStack = new Queue<int>();
+        myStack2 = new Queue<int>();
+    }
+    
+    public void Push(int x) {
+        myStack.Enqueue(x);
+    }
+    
+    public int Pop() {
+        int result = 0;
+        int count = myStack.Count();
+        
+        for(int i = 0; i < count; i++)
+        {
+            if(i +1 == count)
+            {
+                result = myStack.Dequeue();
+            }
+            else
+            {
+                myStack2.Enqueue(myStack.Dequeue());
+            }
+        }
+        
+        myStack = myStack2;
+        
+        return result;
+    }
+    
+    public int Top() {
+        int result = 0;
+        int count = myStack.Count();
+        
+        for(int i = 0; i < count; i++)
+        {
+            if(i +1 == count)
+            {
+                result = myStack.Peek();
+            }
+            myStack2.Enqueue(myStack.Dequeue());
+        }
+        
+        myStack = myStack2;
+        
+        return result;
+    }
+    
+    public bool Empty() {
+        int result = 0;
+        myStack.TryPeek(out result);
+        
+        return result == 0;
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.Push(x);
+ * int param_2 = obj.Pop();
+ * int param_3 = obj.Top();
+ * bool param_4 = obj.Empty();
+ */
+ 
