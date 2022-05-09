@@ -5,20 +5,24 @@ public class Solution {
         
         while(min != max)
         {
-            if(nums[(min + max) /2] == target)
+            int currentIndex = (min + max) /2;
+                                    
+            if(nums[currentIndex] == target)
             {
-                return (min + max) /2;
+                return currentIndex;
             }
             else
             {
-                if(nums[(min + max) /2] > target)
+                if(nums[currentIndex] > target)
                 {
-                    max = (min + max) /2;
+                    max = currentIndex;
                 }
-                
-                if(nums[(min + max) /2] < target)
+                else
                 {
-                    min = (min + max) /2 + 1;
+                    if(nums[currentIndex] < target)
+                    {
+                        min = currentIndex + 1;
+                    }
                 }
             }
         }
