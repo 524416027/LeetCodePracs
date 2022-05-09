@@ -1,0 +1,33 @@
+public class Solution {
+    public int SearchInsert(int[] nums, int target) {
+        int min = 0;
+        int max = nums.Length -1;
+        
+        while(min != max)
+        {
+            if(nums[(min + max) /2] == target)
+            {
+                return (min + max) /2;
+            }
+            else
+            {
+                if(nums[(min + max) /2] > target)
+                {
+                    max = (min + max) /2;
+                }
+                
+                if(nums[(min + max) /2] < target)
+                {
+                    min = (min + max) /2 + 1;
+                }
+            }
+        }
+        
+        if(nums[(min + max) /2] < target)
+        {
+            return (min + max) /2 + 1;
+        }
+
+        return (min + max) /2;
+    }
+}
