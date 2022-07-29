@@ -1,0 +1,57 @@
+public class Solution {
+    public int LengthOfLongestSubstring(string s) {
+        Dictionary<char, int> dictionary = new Dictionary<char, int>();
+        int count = 1;
+        int maxCount = 1;
+
+        int i = 1;
+        int j = 0;
+        
+        char duplicate = '\0';
+        
+        if(s == "")
+        {
+            return 0;
+        }
+        else
+        {
+            dictionary.Add(s[0], 0);
+        }
+        
+        while(i < s.Length)
+        {
+            if(duplicate == '\0')
+            {
+                if(dictionary.ContainsKey(s[i]))
+                {
+                    duplicate = s[i];
+                }
+                else
+                {
+                    dictionary.Add(s[i], i);
+                    count++;
+                    i++;
+                    
+                    if(maxCount < count)
+                    {
+                        maxCount = count;
+                    }
+                }
+            }
+            else
+            {
+                //j++ to next none duplicate
+                dictionary.Remove(s[j]);
+                j++;
+                count--;
+                    
+                if(j == i || s[j] != duplicate)
+                {
+                    duplicate = '\0';
+                }
+            }
+        }
+        
+        return maxCount;
+    }
+}
