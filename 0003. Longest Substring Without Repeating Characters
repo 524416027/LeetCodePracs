@@ -13,10 +13,8 @@ public class Solution {
         {
             return 0;
         }
-        else
-        {
-            dictionary.Add(s[0], 0);
-        }
+        
+        dictionary.Add(s[0], 0);
         
         while(i < s.Length)
         {
