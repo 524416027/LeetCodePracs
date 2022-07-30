@@ -1,0 +1,49 @@
+public class Solution {
+    public IList<IList<int>> ThreeSum(int[] nums) {
+        Dictionary<(int, int, int), int> dictionaryMain = new Dictionary<(int, int, int), int>();
+        IList<IList<int>> result = new List<IList<int>>();
+
+        for(int i = 0; i < nums.Length; i++)
+        {
+            Dictionary<int, int> dictionary = new Dictionary<int, int>();
+            
+            for(int j = 0; j < nums.Length; j++)
+            {
+                if(i != j)
+                {
+                    if(dictionary.ContainsKey(0 - (nums[i] + nums[j])))
+                    {
+                        //create array[3] ordered
+                        int[] array = new int[3];
+                        array[0] = Math.Min(nums[i], Math.Min(nums[j], 0 - (nums[i] + nums[j])));
+                        array[2] = Math.Max(nums[i], Math.Max(nums[j], 0 - (nums[i] + nums[j])));
+                        array[1] = 0 - (array[0] + array[2]);
+                        
+                        if(!dictionaryMain.ContainsKey((array[0], array[1], array[2])))
+                        {
+                            dictionaryMain.Add((array[0], array[1], array[2]), 0);
+                            
+                            //found 3, i j dic value
+                            IList<int> triplets = new List<int>();
+
+                            triplets.Add(nums[i]);
+                            triplets.Add(nums[j]);
+                            triplets.Add(0 - (nums[i] + nums[j]));
+
+                            result.Add(triplets);
+                        }
+                    }
+                    else
+                    {
+                        if(!dictionary.ContainsKey(nums[j]))
+                        {
+                            dictionary.Add(nums[j], j);
+                        }
+                    }
+                }
+            }
+        }
+        
+        return result;
+    }
+}
