@@ -14,11 +14,13 @@ public class Solution {
         ListNode current1 = l1;
         ListNode current2 = l2;
         ListNode result = null;
+        ListNode currentChar = null;
         
         int intend = 0;
         string resultString = "";
         
         int sum = 0;
+        int count = 0;
         
         while(current1 != null || current2 != null)
         {
@@ -56,27 +58,40 @@ public class Solution {
                 intend = 0;
                 resultString += sum.ToString();
             }
+            
+            ListNode charNode = new ListNode();
+            charNode.val = Int32.Parse(resultString[count].ToString());
+            
+            if(result == null)
+            {
+                result = charNode;
+                currentChar = result;
+            }
+            else
+            {
+                currentChar.next = charNode;
+                currentChar = currentChar.next;
+            }
+            
+            count++;
         }
         
         if(intend == 1)
         {
             resultString += intend.ToString();
-        }
-        
-        foreach(char resultChar in resultString)
-        {
+            
             ListNode charNode = new ListNode();
-            charNode.val = Int32.Parse(resultChar.ToString());
+            charNode.val = Int32.Parse(resultString[count].ToString());
             
             if(result == null)
             {
                 result = charNode;
-                current1 = result;
+                currentChar = result;
             }
             else
             {
-                current1.next = charNode;
-                current1 = current1.next;
+                currentChar.next = charNode;
+                currentChar = currentChar.next;
             }
         }
         
