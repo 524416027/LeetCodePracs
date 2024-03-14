@@ -1,0 +1,20 @@
+public class Solution {
+    public string ReverseWords(string s) {
+        char[] sChars = s.ToCharArray();
+        int sentenceCount = s.Split(' ').Length;
+        string[] reversedSentences = new string[sentenceCount];
+
+        for(int i = sChars.Length - 1; i > -1; i--)
+        {
+            if(sChars[i] == ' ')
+            {
+                sentenceCount --;
+            }
+            else
+            {
+                reversedSentences[sentenceCount - 1] += sChars[i];
+            }
+        }
+        return string.Join(' ', reversedSentences);
+    }
+}
