@@ -1,31 +1,30 @@
-public class Solution {
-    public int RomanToInt(string s) {
-        Dictionary<Char, int> romanNumeralSymbols = new Dictionary<Char, int>();
-        
-        romanNumeralSymbols.Add('I', 1);
-        romanNumeralSymbols.Add('V', 5);
-        romanNumeralSymbols.Add('X', 10);
-        romanNumeralSymbols.Add('L', 50);
-        romanNumeralSymbols.Add('C', 100);
-        romanNumeralSymbols.Add('D', 500);
-        romanNumeralSymbols.Add('M', 1000);
-        
+public class Solution
+{
+    public int RomanToInt(string s)
+    {
+        Dictionary<char, int> dc = new Dictionary<char, int>();
         int result = 0;
-        
-        char lastSymbol = s[0];
-        
-        for(int i = 0; i < s.Length; i++)
+        char lastChar = s[0];
+
+        dc.Add('I', 1);
+        dc.Add('V', 5);
+        dc.Add('X', 10);
+        dc.Add('L', 50);
+        dc.Add('C', 100);
+        dc.Add('D', 500);
+        dc.Add('M', 1000);
+
+        for (int i = 0; i < s.Length; i++)
         {
-                if(romanNumeralSymbols[lastSymbol] < romanNumeralSymbols[s[i]])
-                {
-                    result -= romanNumeralSymbols[lastSymbol] * 2;
-                }
-            
-                result += romanNumeralSymbols[s[i]];
-                
-            lastSymbol = s[i];
+            result += dc[s[i]];
+
+            if(dc[lastChar] < dc[s[i]])
+            {
+                result -= (dc[lastChar] * 2);
+            }
+
+            lastChar = s[i];
         }
-        
         return result;
     }
 }
